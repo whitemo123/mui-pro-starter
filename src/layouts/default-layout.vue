@@ -1,0 +1,61 @@
+<script setup lang="ts">
+import { useMenuStore } from '@/store'
+// 侧边栏
+import SideBar from './components/siderBar/index.vue'
+
+// 页面路由
+import PageLayout from './page-layout.vue'
+
+const menuStore = useMenuStore()
+</script>
+
+<template>
+  <div class="mui-contail" :class="{'mui--collapse': menuStore.collapsed}">
+    <div class="mui-left">
+      <SideBar />
+    </div>
+    <div class="mui-right">
+      <div class="mui-header">
+        <!-- <Top /> -->
+      </div>
+      <PageLayout />
+    </div>
+  </div>
+</template>
+
+<style lang="scss" scoped>
+.mui-contail {
+  width: 100%;
+  height: 100%;
+  background-color: #f0f2f5;
+  font-family: Chinese Quote,-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Helvetica Neue,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+  .mui-left {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 240px;
+    transition: width .3s;
+  }
+  .mui-right {
+    width: 100%;
+    height: 100%;
+    padding-left: 240px;
+    transition: padding-left .3s;
+
+    .mui-header {
+      width: 100%;
+      height: 104px;
+      background-color: #fff;
+    }
+  }
+}
+.mui--collapse {
+  .mui-left {
+    width: 80px;
+  }
+  .mui-right {
+    padding-left: 80px;
+  }
+}
+</style>
