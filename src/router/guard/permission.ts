@@ -1,11 +1,12 @@
 import { useMenuStore } from "@/store";
+import { getToken } from "@/utils/auth";
 import { useNProgress } from '@/hooks/useNProgress'
 import type { Router } from "vue-router";
 
 export default function permissionGuard(router: Router) {
   router.beforeEach(async (to, from, next) => {
     const menuStore = useMenuStore()
-    if (!menuStore.added) {
+    if (getToken() && !menuStore.added) {
       // 没添加过menu
       await menuStore.getServerMenus()
       menuStore.menus.forEach(item => {

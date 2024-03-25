@@ -102,5 +102,10 @@ const menuSelect = (index: string) => {
       }
     }
   }
+  :deep(.el-menu--collapse) {
+    .el-sub-menu.is-active .el-sub-menu__title {
+      color: #fff;
+    }
+  }
 }
 </style>

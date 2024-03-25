@@ -44,6 +44,7 @@ const menuStore = useMenuStore()
     height: 100%;
     padding-left: 240px;
     transition: padding-left .3s;
+    box-sizing: border-box;
 
     .mui-header {
       width: 100%;
@@ -52,10 +53,10 @@ const menuStore = useMenuStore()
 }
 .mui--collapse {
   .mui-left {
-    width: 80px;
+    width: 60px;
   }
   .mui-right {
-    padding-left: 80px;
+    padding-left: 60px;
   }
 }
 </style>

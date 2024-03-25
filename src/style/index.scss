@@ -3,3 +3,29 @@
   height: 100%;
   overflow: hidden;
 }
+.el-menu--popup {
+  background: transparent !important;
+  .el-menu-item {
+    background-color: #20222a;
+    color: hsla(0,0%,100%,.7);
+    &.is-active {
+      background-color: rgba(0,0,0,.8);
+      color: #fff;
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 4px;
+        background-color: #409eff;
+      }
+      // span {
+      //   color: #fff;
+      // }
+    }
+    &:hover {
+      color: #fff;
+    }
+  }
+}
