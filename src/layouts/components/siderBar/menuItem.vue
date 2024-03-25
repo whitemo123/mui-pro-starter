@@ -1,9 +1,42 @@
 <script setup lang="ts">
+import config from '@/config'
+import MenuItem from './menuItem.vue'
+import type { RouteRecordRaw } from 'vue-router';
 
+interface IProps {
+  // 菜单数组
+  menu: RouteRecordRaw[]
+}
+
+defineProps<IProps>()
 </script>
 
 <template>
-  
+  <div class="menu-wrapper">
+    <template v-for="(item, index) in menu" :key="index">
+      <el-sub-menu
+        v-if="item[config.menu.children] && item[config.menu.children].length"
+        :index="item[config.menu.path]"
+      >
+        <template v-slot:title>
+          <i style="margin-right: 10px;" class="iconfont icon-vuesax-linear-home-2"></i>
+          <span>{{ item[config.menu.meta]['title'] }}</span>
+        </template>
+        <MenuItem :menu="item[config.menu.children]" />
+      </el-sub-menu>
+      <el-menu-item
+        v-else
+        :index="item[config.menu.path]"
+      >
+        <i style="margin-right: 10px;" class="iconfont icon-vuesax-linear-home-2"></i>
+        <span>{{ item[config.menu.meta]['title'] }}</span>
+      </el-menu-item>
+    </template>
+  </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.menu-wrapper {
+  width: 100%;
+}
+</style>

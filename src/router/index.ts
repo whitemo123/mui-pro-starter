@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
+import createRouteGuard from './guard'
 
 // 框架页面路由
 import pages from './pages';
@@ -14,5 +15,7 @@ const router = createRouter({
     ...views
   ]
 })
+
+createRouteGuard(router)
 
 export default router

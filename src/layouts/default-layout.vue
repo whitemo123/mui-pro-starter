@@ -2,6 +2,8 @@
 import { useMenuStore } from '@/store'
 // 侧边栏
 import SideBar from './components/siderBar/index.vue'
+// 顶部栏
+import Top from './components/top/index.vue'
 
 // 页面路由
 import PageLayout from './page-layout.vue'
@@ -16,7 +18,7 @@ const menuStore = useMenuStore()
     </div>
     <div class="mui-right">
       <div class="mui-header">
-        <!-- <Top /> -->
+        <Top />
       </div>
       <PageLayout />
     </div>
@@ -45,8 +47,6 @@ const menuStore = useMenuStore()
 
     .mui-header {
       width: 100%;
-      height: 104px;
-      background-color: #fff;
     }
   }
 }

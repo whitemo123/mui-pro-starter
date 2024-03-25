@@ -37,9 +37,9 @@ const homeTag: Tag = {
 
 export const useTagsStore = defineStore('tags', () => {
   // 标签列表
-  const tagList = ref<Tag[]>(getStorage('tagList', 'sessionStorage') || [])
+  const tagList = ref<Tag[]>(getStorage('tagList', 'localStorage') || [])
   // 当前tag
-  const tag = ref<Tag>(getStorage('tag', 'sessionStorage') || emptyTag)
+  const tag = ref<Tag>(getStorage('tag', 'localStorage') || emptyTag)
 
   /**
    * @description 添加tag
@@ -52,7 +52,7 @@ export const useTagsStore = defineStore('tags', () => {
     }
     // 设置当前tag
     tag.value = data
-    setStorage('tag', data, 'sessionStorage')
+    setStorage('tag', data, 'localStorage')
 
     // 查找对应的路由是否已添加到tagList
     if (tagList.value.some(ele => diff(ele, data))) {
@@ -61,7 +61,7 @@ export const useTagsStore = defineStore('tags', () => {
     // 推送到tagList列表
     tagList.value.push(data)
     // 保存tagList
-    setStorage('tagList', tagList.value, 'sessionStorage')
+    setStorage('tagList', tagList.value, 'localStorage')
   }
 
 
@@ -73,7 +73,7 @@ export const useTagsStore = defineStore('tags', () => {
     // 删除匹配
     tagList.value = tagList.value.filter(ele => !diff(ele, data))
     // 保存tagList
-    setStorage('tagList', tagList.value, 'sessionStorage')
+    setStorage('tagList', tagList.value, 'localStorage')
   }
 
   /**
@@ -83,7 +83,7 @@ export const useTagsStore = defineStore('tags', () => {
     // 保留首页tag
     tagList.value = [homeTag]
     // 保存tagList
-    setStorage('tagList', tagList.value, 'sessionStorage')
+    setStorage('tagList', tagList.value, 'localStorage')
   }
 
   /**
@@ -103,7 +103,7 @@ export const useTagsStore = defineStore('tags', () => {
       }
     })
     // 保存tagList
-    setStorage('tagList', tagList.value, 'sessionStorage')
+    setStorage('tagList', tagList.value, 'localStorage')
   }
 
   return {

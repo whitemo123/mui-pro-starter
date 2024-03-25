@@ -1,4 +1,5 @@
 import { createApp } from 'vue'
+import 'uno.css'
 import App from './App.vue'
 
 // 全局插件
