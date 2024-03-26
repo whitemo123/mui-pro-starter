@@ -41,6 +41,17 @@ export const useTagsStore = defineStore('tags', () => {
   // 当前tag
   const tag = ref<Tag>(getStorage('tag', 'localStorage') || emptyTag)
 
+
+  /**
+   * @description 设置当前路由
+   * @param data 路由数据
+   */
+  const setTag = (data: Tag) => {
+    // 设置当前tag
+    tag.value = data
+    setStorage('tag', data, 'localStorage')
+  }
+
   /**
    * @description 添加tag
    * @param data 路由数据
@@ -50,10 +61,8 @@ export const useTagsStore = defineStore('tags', () => {
     if (!data) {
       return
     }
-    // 设置当前tag
-    tag.value = data
-    setStorage('tag', data, 'localStorage')
-
+    // 设置当前路由
+    setTag(data)
     // 查找对应的路由是否已添加到tagList
     if (tagList.value.some(ele => diff(ele, data))) {
       return
@@ -88,17 +97,12 @@ export const useTagsStore = defineStore('tags', () => {
 
   /**
    * @description 删除其他tag
-   * @param data 路由数据
    */
-  const delOtherTag = (data: Tag) => {
+  const delOtherTag = () => {
     // 保留匹配和首页
     tagList.value = tagList.value.filter(ele => {
       // 首页
       if (ele.value === config.homePath) {
-        return true
-      }
-      // 一样则保留
-      if (diff(ele, data)) {
         return true
       }
     })
@@ -109,6 +113,7 @@ export const useTagsStore = defineStore('tags', () => {
   return {
     tagList,
     tag,
+    setTag,
     addTag,
     delTag,
     delAllTag,
