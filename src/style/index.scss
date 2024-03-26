@@ -3,6 +3,13 @@
   height: 100%;
   overflow: hidden;
 }
+
+a {
+  text-decoration: none;
+  color: #333;
+}
+
+// 修改菜单弹出层样式
 .el-menu--popup {
   background: transparent !important;
   .el-menu-item {
@@ -20,9 +27,6 @@
         width: 4px;
         background-color: #409eff;
       }
-      // span {
-      //   color: #fff;
-      // }
     }
     &:hover {
       color: #fff;

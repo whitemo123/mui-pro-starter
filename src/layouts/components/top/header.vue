@@ -1,11 +1,30 @@
 <script setup lang="ts">
+import { useRouter } from 'vue-router';
 import { useMenuStore, useUserStore } from '@/store'
+import { ElMessageBox } from 'element-plus';
 
+const router = useRouter()
 const userStore = useUserStore()
 const menuStore = useMenuStore()
 
+/**
+ * @description 切换菜单折叠
+ */
 const toggle = () => {
   menuStore.setCollapsed(!menuStore.collapsed)
+}
+
+/**
+ * @description 退出登录
+ */
+const logout = () => {
+  ElMessageBox.confirm('退出系统, 是否继续?', '', {}).then(() => {
+    userStore.logOut().then(() => {
+      router.push({
+        path: '/login'
+      })
+    })
+  })
 }
 </script>
 
@@ -37,6 +56,7 @@ const toggle = () => {
             </el-dropdown-item>
             <el-dropdown-item
               divided
+              @click.native="logout"
             >
               退出登录
             </el-dropdown-item>
