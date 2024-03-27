@@ -13,5 +13,8 @@ import Tabbar from './tabbar.vue'
 </template>
 
 <style lang="scss" scoped>
+.mui-top {
+  background: var(--mui-container-bg);
+}
 </style>
 

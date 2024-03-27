@@ -72,7 +72,6 @@ const logout = () => {
   width: 100%;
   height: 64px;
   line-height: 64px;
-  background-color: #fff;
   padding: 0 20px;
   box-sizing: border-box;
 

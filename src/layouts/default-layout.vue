@@ -31,7 +31,7 @@ const menuStore = useMenuStore()
 .mui-contail {
   width: 100%;
   height: 100%;
-  background-color: #f0f2f5;
+  background-color: var(--mui-container-bg);
   font-family: Chinese Quote,-apple-system,BlinkMacSystemFont,Segoe UI,PingFang SC,Hiragino Sans GB,Microsoft YaHei,Helvetica Neue,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
   .mui-left {
     position: absolute;

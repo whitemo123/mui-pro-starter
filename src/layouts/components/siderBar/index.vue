@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useResponsive } from '@/hooks/useResponsive';
 import { listenerRouteChange } from '@/utils/route-listener';
 import config from '@/config';
 import Menu from './menu.vue'
@@ -6,6 +7,8 @@ import { useMenuStore, useTagsStore } from '@/store'
 
 const menuStore = useMenuStore()
 const tagsStore = useTagsStore()
+
+useResponsive(true)
 
 // 监听路由变化
 listenerRouteChange((route) => {

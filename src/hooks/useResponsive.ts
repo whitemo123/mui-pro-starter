@@ -1,5 +1,5 @@
 import { onMounted, onBeforeMount, onBeforeUnmount } from 'vue';
-import { useAppStore } from "@/store"
+import { useSysStore } from "@/store"
 import { useMenuStore } from "@/store";
 import { useDebounceFn } from '@vueuse/core'
 import { addEventListen, removeEventListen } from '@/utils/event'
@@ -12,13 +12,13 @@ function queryDevice() {
 }
 
 export const useResponsive = (immediate?: boolean) => {
-  const appStore = useAppStore()
+  const sysStore = useSysStore()
   const menuStore = useMenuStore()
 
   function resizeHandler() {
     if (!document.hidden) {
       const isMobile = queryDevice();
-      appStore.toggleDevice(isMobile ? 'mobile' : 'desktop');
+      sysStore.toggleDevice(isMobile ? 'mobile' : 'desktop');
       menuStore.setCollapsed(isMobile);
     }
   }
