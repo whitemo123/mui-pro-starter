@@ -41,6 +41,10 @@ export const useTagsStore = defineStore('tags', () => {
   // 当前tag
   const tag = ref<Tag>(getStorage('tag', 'localStorage') || emptyTag)
 
+  // 需要缓存的标签
+  const tagsKeep = computed(() => {
+    return tagList.value.filter(ele => ele.meta[config.menu.keepAlive]).map(ele => ele.label)
+  })
 
   /**
    * @description 设置当前路由
@@ -98,11 +102,14 @@ export const useTagsStore = defineStore('tags', () => {
   /**
    * @description 删除其他tag
    */
-  const delOtherTag = () => {
+  const delOtherTag = (data: Tag) => {
     // 保留匹配和首页
     tagList.value = tagList.value.filter(ele => {
       // 首页
       if (ele.value === config.homePath) {
+        return true
+      }
+      if (ele.value === data.value) {
         return true
       }
     })
@@ -113,6 +120,7 @@ export const useTagsStore = defineStore('tags', () => {
   return {
     tagList,
     tag,
+    tagsKeep,
     setTag,
     addTag,
     delTag,

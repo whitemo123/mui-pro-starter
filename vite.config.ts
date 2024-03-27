@@ -31,8 +31,8 @@ export default ({ mode }) => {
       port: 81,
       proxy: {
         "/api": {
-          target: "http://30864j2v89.wicp.vip",
-          // target: "http://192.168.1.44:1900",
+          // target: "http://30864j2v89.wicp.vip",
+          target: "http://192.168.1.44:1900",
           ws: true,
           changeOrigin: true
         }

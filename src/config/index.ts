@@ -26,7 +26,7 @@ const config: IConfig = {
     meta: 'meta',
     title: 'title',
     icon: 'icon',
-    keepAlive: 'keepAlive'
+    keepAlive: 'isKeepAlive'
   }
 }
 

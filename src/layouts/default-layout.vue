@@ -16,11 +16,13 @@ const menuStore = useMenuStore()
     <div class="mui-left">
       <SideBar />
     </div>
-    <div class="mui-right">
+    <div class="mui-right flex flex-col items-center justify-start">
       <div class="mui-header">
         <Top />
       </div>
-      <PageLayout />
+      <div class="mui-container flex-1">
+        <PageLayout />
+      </div>
     </div>
   </div>
 </template>
@@ -48,6 +50,12 @@ const menuStore = useMenuStore()
 
     .mui-header {
       width: 100%;
+    }
+
+    .mui-container {
+      width: 100%;
+      padding-top: 10px;
+      box-sizing: border-box;
     }
   }
 }

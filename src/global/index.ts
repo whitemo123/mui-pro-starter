@@ -15,6 +15,9 @@ import "normalize.css"
 // 通用样式
 import "@/style/index.scss"
 
+// 全局组件
+import globalComponents from './plugins/components'
+
 export default (app: App) => {
   // 使用错误插件
   app.use(error)
@@ -26,4 +29,6 @@ export default (app: App) => {
   app.use(elementPlus)
   // 使用m-element-plus(crud)
   app.use(crud)
+  // 使用全局组件
+  app.use(globalComponents)
 }

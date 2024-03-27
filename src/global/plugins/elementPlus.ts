@@ -12,7 +12,8 @@ import * as ElementPlusIconsVue from '@element-plus/icons-vue'
 export default (app: App) => {
   // 注册element-plus
   app.use(ElementPlus, {
-    locale: zhCn
+    locale: zhCn,
+    size: 'default'
   })
   // 注册所有图标
   for (const [key, component] of Object.entries(ElementPlusIconsVue)) {

@@ -58,7 +58,7 @@ const closeOther = (data: any) => {
  * @description 关闭全部
  */
 const closeAll = () => {
-  tagsStore.delOtherTag()
+  tagsStore.delAllTag()
   const first = tagsStore.tagList[0]
   tagsStore.setTag(first)
   openTag(first)
@@ -100,6 +100,7 @@ const closeAll = () => {
   box-shadow: 0 1px 2px 0 rgba(0,0,0,.05);
   padding: 0 10px;
   box-sizing: border-box;
+  overflow: hidden;
   :deep(.el-dropdown) {
     margin-left: 10px;
     &:first-child {
