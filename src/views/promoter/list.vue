@@ -31,16 +31,8 @@ const option = ref<ICrudOption>({
     {
       label: "通知类型",
       type: "select",
-      dicData: [
-        {
-          label: "全体",
-          value: 1
-        },
-        {
-          label: "部门",
-          value: 2
-        }
-      ],
+      dicUrl: '/admin/promoter/getPromoterList',
+      dicFormatter: (res: any) => ({list: res, label: 'promoterName', value: 'promoterId'}),
       slot: true,
       prop: "category",
       search: true,

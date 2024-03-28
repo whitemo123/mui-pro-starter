@@ -98,9 +98,10 @@ const login = () => {
     position: absolute;
     top: 45%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateY(-50%);
     width: 320px;
     padding: 36px;
+    margin-left: -160px;
     box-shadow: 0 0 100px rgba(0, 0, 0, 0.08);
     background: #fff;
 
