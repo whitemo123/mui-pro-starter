@@ -1,18 +1,17 @@
 <script setup lang="ts">
 import config from '@/config'
 import MenuItem from './menuItem.vue'
-import type { RouteRecordRaw } from 'vue-router';
 
 interface IProps {
   // 菜单数组
-  menu: RouteRecordRaw[]
+  menu: any
 }
 
 defineProps<IProps>()
 </script>
 
 <template>
-  <template v-for="(item, index) in menu" :key="index">
+  <template v-for="item in menu">
     <el-sub-menu
       v-if="item[config.menu.children] && item[config.menu.children].length"
       :index="item[config.menu.path]"

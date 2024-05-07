@@ -1,9 +1,12 @@
 import { defineConfig, loadEnv } from 'vite'
+// vue
 import vue from '@vitejs/plugin-vue'
 // tsx
 import VueJsx from '@vitejs/plugin-vue-jsx'
-
+// unocss
 import Unocss from 'unocss/vite'
+
+// import vitePluginFile2Route from 'vite-plugin-file2route'
 
 import path from 'path'
 
@@ -17,7 +20,8 @@ export default ({ mode }) => {
     plugins: [
       vue(),
       VueJsx(),
-      Unocss()
+      Unocss(),
+      // vitePluginFile2Route()
     ],
     // alias配置
     resolve: {

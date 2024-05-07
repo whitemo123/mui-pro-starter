@@ -1,9 +1,4 @@
 <script setup lang="ts">
-import { useTagsStore } from '@/store';
-
-const tagsStore = useTagsStore()
-
-console.log(tagsStore.tagList)
 </script>
 
 <template>

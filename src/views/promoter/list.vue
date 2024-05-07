@@ -11,7 +11,13 @@ const query = ref<any>({
 
 const total = ref(10)
 
-const data = ref<any>([])
+const data = ref<any>([
+  {
+    title: '测试',
+    releaseTime: '2023-01-02',
+    content: '测试'
+  }
+])
 
 const option = ref<ICrudOption>({
   dialogWidth: '1000px',
@@ -61,6 +67,47 @@ const option = ref<ICrudOption>({
     }
   ]
 })
+
+/**
+ * 新增
+ * @param form 
+ * @param done 
+ * @param loading 
+ */
+const rowSave = (form: any, done: Function, loading: Function) => {
+  console.log('新增', form, done, loading)
+  // done()
+  loading()
+}
+
+/**
+ * 编辑
+ * @param form 
+ * @param done 
+ * @param loading 
+ */
+const rowEdit = (form: any, done: Function, loading: Function) => {
+  console.log('修改', form, done, loading)
+  // done()
+  loading()
+}
+
+/**
+ * 取消
+ * @param form 
+ * @param index 
+ * @param type add edit view
+ */
+const rowCancel = (form: any, index: number, type: string) => {
+  console.log('取消', form, index, type)
+}
+
+/**
+ * @description 删除
+ */
+const rowDel = (form: any, index: number) => {
+  console.log('删除', form, index)
+}
 </script>
 
 <template>
@@ -71,6 +118,10 @@ const option = ref<ICrudOption>({
       :data="data"
       :total="total"
       v-model:search="query"
+      @rowSave="rowSave"
+      @rowEdit="rowEdit"
+      @rowCancel="rowCancel"
+      @rowDel="rowDel"
     >
     </m-crud>
   </page>

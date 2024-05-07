@@ -10,8 +10,17 @@ const tagsStore = useTagsStore()
 
 useResponsive(true)
 
+// 白名单
+const WHITE_ROUTE_NAMES: string[] = ['Login'].concat(config.routerWhiteList)
+
 // 监听路由变化
 listenerRouteChange((route) => {
+  if (!route.name) {
+    return;
+  }
+  if (WHITE_ROUTE_NAMES.includes(route.name as string)) {
+    return
+  }
   tagsStore.addTag({
     // 标题名称
     label: route.name as string,

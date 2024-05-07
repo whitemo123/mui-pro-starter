@@ -1,9 +1,8 @@
-import { ref, computed, h } from 'vue';
+import { ref } from 'vue';
 import { defineStore } from 'pinia';
 import { RouteRecordRaw } from 'vue-router';
 import { getMenuApi } from '@/apis/core';
 import { formatRoutes } from '@/utils/menu'
-import { ItemType } from 'ant-design-vue';
 
 export const useMenuStore = defineStore('menu', () => {
   // 已经添加
@@ -14,31 +13,6 @@ export const useMenuStore = defineStore('menu', () => {
 
   // 菜单收缩
   const collapsed = ref(false)
-
-  /**
-   * 菜单绑定的值
-   */
-  const aMenuList = computed(() => {
-    const transform = (arr: RouteRecordRaw[], list: ItemType[] = []) => {
-      if (arr) {
-        arr.forEach(element => {
-          // @ts-ignore
-          const childres = transform(element.children)
-          const node: ItemType = {
-            key: element.path,
-            label: element!.meta!.title as string,
-            title: element!.meta!.title as string,
-            icon: h('i', { class: 'iconfont icon-vuesax-linear-home-2' }),
-            // @ts-ignore
-            children: childres.length ? childres : null
-          }
-          list.push(node)
-        })
-      }
-      return list;
-    }
-    return transform(menus.value);
-  })
 
   /**
    * 设置菜单收缩状态
@@ -64,7 +38,6 @@ export const useMenuStore = defineStore('menu', () => {
   }
 
   return {
-    aMenuList,
     collapsed,
     added,
     menus,

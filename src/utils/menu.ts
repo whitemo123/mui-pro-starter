@@ -1,8 +1,11 @@
+import { shallowRef } from 'vue'
 import { RouteRecordRaw } from 'vue-router'
 import config from "@/config";
+import defaultLayout from '@/layouts/default-layout.vue';
+import pageLayout from '@/layouts/page-layout.vue';
 
 // 拿到src目录下的所有vue文件
-const modules = import.meta.glob('@/**/*.vue')
+const modules = import.meta.glob(['@/views/**/*.vue'])
 
 
 /**
@@ -62,11 +65,11 @@ export const formatRoutes = (menus: any = []) => {
       component: (() => {
         // 一级目录
         if (isFirstlevelFolder(menu)) {
-          return modules['/src/layouts/default-layout.vue']
+          return shallowRef(defaultLayout)
         }
         // 判断是否为多层路由
         if (isMultilevelFolder(menu)) {
-          return modules['/src/views/layouts/page-layout.vue']
+          return shallowRef(pageLayout)
         }
         return modules[`/src/views${component}.vue`]
       })(),

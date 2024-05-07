@@ -7,7 +7,7 @@ import type { Router } from "vue-router";
 
 
 export default function loginGuard(router: Router) {
-  router.beforeEach(async (to, from, next) => {
+  router.beforeEach(async (to, _, next) => {
     // 用户store
     const userStore = useUserStore()
     // nprogress hook

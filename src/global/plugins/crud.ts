@@ -8,10 +8,11 @@ import { webRequest } from "@/request";
 
 export default (app: App) => {
   // 使用m-element-plus
+  // @ts-ignore
   app.use(MElementPlus, {
     // 表格高度额外控制
     calcHeight: 30,
     // 注入业务request get请求
     httpGet: webRequest.get.bind(webRequest)
-  })
+  } as any)
 }

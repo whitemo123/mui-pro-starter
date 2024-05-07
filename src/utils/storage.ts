@@ -86,7 +86,8 @@ export const getStorage = <T = any>(key: string, type: StorageType = 'localStora
     // @ts-ignore
     content = Number(jsonObj.data)
   } else if (jsonObj.dataType == 'boolean') {
-    content = eval(jsonObj.data)
+    // @ts-ignore
+    content = Boolean(jsonObj.data)
   } else if (jsonObj.dataType == 'object') {
     content = jsonObj.data;
   }
