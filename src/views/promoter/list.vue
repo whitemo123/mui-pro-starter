@@ -9,7 +9,7 @@ const query = ref<any>({
   limit: 10
 })
 
-const total = ref(10)
+const total = ref(100)
 
 const data = ref<any>([
   {

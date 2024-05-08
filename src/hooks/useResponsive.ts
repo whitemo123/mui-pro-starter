@@ -19,6 +19,13 @@ export const useResponsive = (immediate?: boolean) => {
     if (!document.hidden) {
       const isMobile = queryDevice();
       sysStore.toggleDevice(isMobile ? 'mobile' : 'desktop');
+      
+      if (isMobile) {
+        document.documentElement.classList.add('mobile');
+      } else {
+        document.documentElement.classList.remove('mobile');
+      }
+
       menuStore.setCollapsed(isMobile);
     }
   }
