@@ -45,6 +45,10 @@ a {
 
 // 手机样式
 .mobile {
+  .app {
+    min-height: 100%;
+    overflow: unset;
+  }
   // 弹窗
   .el-dialog {
     max-width: 94%;
