@@ -1,4 +1,4 @@
-import { webRequest } from "@/request";
+import api from "@/request";
 import type { ILoginData, IUserInfo } from "./types";
 
 /**
@@ -6,16 +6,16 @@ import type { ILoginData, IUserInfo } from "./types";
  * @param data 登录表单
  * @returns
  */
-export const loginApi = (data: ILoginData) => webRequest.get<string>('/admin/login', data)
+export const loginApi = (data: ILoginData) => api.get<string>('/admin/login', data)
 
 /**
  * 获取用户信息
  * @returns
  */
-export const getUserInfoApi = () => webRequest.get<IUserInfo>('/admin/getAccountInfo')
+export const getUserInfoApi = () => api.get<IUserInfo>('/admin/getAccountInfo')
 
 /**
  * 获取菜单列表
  * @returns
  */
-export const getMenuApi = () => webRequest.get('/admin/getMenuTree')
+export const getMenuApi = () => api.get('/admin/getMenuTree')

@@ -29,7 +29,7 @@ export const useMenuStore = defineStore('menu', () => {
   const getServerMenus = () => {
     return new Promise(resolve => {
       getMenuApi().then(e => {
-        const arr = formatRoutes(e);
+        const arr = formatRoutes(e.data);
         menus.value = arr as RouteRecordRaw[];
         added.value = true
         resolve(null)

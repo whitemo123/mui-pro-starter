@@ -4,7 +4,7 @@ import { App } from 'vue'
 import MElementPlus from 'm-element-plus'
 import 'm-element-plus/dist/index.css'
 
-import { webRequest } from "@/request";
+import api from "@/request";
 
 export default (app: App) => {
   // 使用m-element-plus
@@ -13,6 +13,6 @@ export default (app: App) => {
     // 表格高度额外控制
     calcHeight: 30,
     // 注入业务request get请求
-    httpGet: webRequest.get.bind(webRequest)
+    httpGet: api.get.bind(api)
   } as any)
 }

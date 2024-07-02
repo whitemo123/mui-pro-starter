@@ -4,7 +4,7 @@ import { useNProgress } from '@/hooks/useNProgress';
 import { useUserStore } from '@/store';
 import { getToken } from '@/utils/auth';
 import config from '@/config';
-import type { IFetchRequestOptions } from "./types";
+import type { IFetchRequestOptions, IFetchResponse } from "./types";
 
 export default class FetchRequest {
 
@@ -29,7 +29,7 @@ export default class FetchRequest {
    * @param url 请求地址
    * @param init 请求配置
    */
-  request<T = any>(url: string, init: RequestInit): Promise<T> {
+  request<T = any>(url: string, init: RequestInit): Promise<IFetchResponse<T>> {
     return new Promise(async (resolve, reject) => {
       const { start, done } = useNProgress()
       // 接口地址
@@ -64,6 +64,7 @@ export default class FetchRequest {
         }
         // 响应数据状态
         const responseType = fetchResponse.headers.get('content-type')
+        
         if (responseType === 'application/json') {
           // json格式数据
           const responseJson = await fetchResponse.clone().json()
@@ -78,7 +79,19 @@ export default class FetchRequest {
             reject(responseJson)
             return;
           }
-          return resolve(responseJson.data as T)
+
+          // 获取响应头
+          const headers: Record<string, any> = {}
+          if (fetchResponse.headers) {
+            for (const header of fetchResponse.headers.entries()) {
+              headers[header[0]] = header[1]
+            }
+          }
+          
+          return resolve({
+            data: responseJson.data as T,
+            headers: headers
+          })
         }
         if (responseType === 'application/octet-stream') {
           // 二进制格式数据
@@ -100,7 +113,7 @@ export default class FetchRequest {
    * @param data 请求数据
    * @returns Promise对象
    */
-  get<T = any>(url: string, data?: Record<string, any>): Promise<T> {
+  get<T = any>(url: string, data?: Record<string, any>): Promise<IFetchResponse<T>> {
     const body = data ? '?' + new URLSearchParams(data).toString() : ''
 
     return this.request(url + body, {
@@ -114,7 +127,7 @@ export default class FetchRequest {
    * @param data 请求数据
    * @returns Promise对象
    */
-  postW<T = any>(url: string, data?: Record<string, any>): Promise<T> {
+  postW<T = any>(url: string, data?: Record<string, any>): Promise<IFetchResponse<T>> {
     const body = data ? new URLSearchParams(data) : ''
 
     return this.request(url, {
@@ -132,7 +145,7 @@ export default class FetchRequest {
    * @param data 请求数据
    * @returns Promise对象
    */
-  postJ<T = any>(url: string, data?: any): Promise<T> {
+  postJ<T = any>(url: string, data?: any): Promise<IFetchResponse<T>> {
     let body
 
     if ((typeof data === 'object') && (data !== null) && (Array.isArray(data) || !(data instanceof Array))) {

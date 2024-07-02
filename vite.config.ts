@@ -36,7 +36,12 @@ export default ({ mode }) => {
       proxy: {
         "/api": {
           // target: "http://30864j2v89.wicp.vip",
-          target: "http://192.168.1.44:1900",
+          target: "http://192.168.1.111:8188",
+          ws: true,
+          changeOrigin: true
+        },
+        "/test-api": {
+          target: "http://127.0.0.1:3000",
           ws: true,
           changeOrigin: true
         }

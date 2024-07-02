@@ -9,3 +9,11 @@ export interface IFetchRequestOptions {
   // 默认请求头
   headers?: Record<string, any>
 }
+
+/**
+ * fetch response构造配置
+ */
+export interface IFetchResponse<T = any> {
+  data: T;
+  headers: any;
+}
