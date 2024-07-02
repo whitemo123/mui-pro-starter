@@ -23,6 +23,7 @@ const option = ref<ICrudOption>({
   dialogWidth: '1000px',
   formLabelWidth: '100px',
   searchLabelWidth: '100px',
+  height: 'auto',
   column: [
     {
       label: "通知标题",

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { computed } from 'vue'
 import { useRouter } from 'vue-router';
 import { useMenuStore, useUserStore } from '@/store'
 import { ElMessageBox } from 'element-plus';
@@ -6,6 +7,13 @@ import { ElMessageBox } from 'element-plus';
 const router = useRouter()
 const userStore = useUserStore()
 const menuStore = useMenuStore()
+
+const firstName = computed(() => {
+  if (userStore.userInfo.realName) {
+    return String(userStore.userInfo.realName)[0]
+  }
+  return '无'
+})
 
 /**
  * @description 切换菜单折叠
@@ -40,10 +48,11 @@ const logout = () => {
       </i>
     </div>
     <div class="mui-header-right flex-1 flex justify-end items-center">
-      <img
+      <!-- <img
         class="avatar rounded-full"
         src="https://img2.baidu.com/it/u=1238811660,2366224124&fm=253&fmt=auto&app=138&f=JPEG?w=500&h=500"
-      />
+      /> -->
+      <div class="avatar-text rounded-full flex items-center justify-center select-none">{{ firstName }}</div>
       <el-dropdown>
         <span class="flex justify-center items-center">
           {{ userStore.userInfo?.realName}}
@@ -89,6 +98,14 @@ const logout = () => {
       width: 30px;
       height: 30px;
       margin: 0 8px;
+    }
+    .avatar-text {
+      width: 30px;
+      height: 30px;
+      margin: 0 8px;
+      background-color: #ccc;
+      color: #fff;
+      font-size: 16px;
     }
   }
 }

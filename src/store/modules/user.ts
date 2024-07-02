@@ -18,8 +18,7 @@ export const useUserStore = defineStore('user', () => {
   const login = (form: ILoginData) => {
     return new Promise((resolve, reject) => {
       loginApi(form).then(e => {
-        debugger
-        setToken(`Bearer ${e}`)
+        setToken(`Bearer ${e.data}`)
         resolve(null)
       }).catch(err => {
         reject(err)
