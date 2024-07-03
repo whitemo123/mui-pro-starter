@@ -1,39 +1,12 @@
 <script setup lang="ts">
 import { useResponsive } from '@/hooks/useResponsive';
-import { listenerRouteChange } from '@/utils/route-listener';
 import config from '@/config';
 import Menu from './menu.vue'
-import { useMenuStore, useTagsStore } from '@/store'
+import { useMenuStore } from '@/store'
 
 const menuStore = useMenuStore()
-const tagsStore = useTagsStore()
 
 useResponsive(true)
-
-// 白名单
-const WHITE_ROUTE_NAMES: string[] = ['Login'].concat(config.routerWhiteList)
-
-// 监听路由变化
-listenerRouteChange((route) => {
-  if (!route.name) {
-    return;
-  }
-  if (WHITE_ROUTE_NAMES.includes(route.name as string)) {
-    return
-  }
-  tagsStore.addTag({
-    // 标题名称
-    label: route.name as string,
-    // 标题的路径
-    value: route.path,
-    // 标题的路径参数
-    params: route.params,
-    // 标题的参数
-    query: route.query,
-    // 额外参数
-    meta: route.meta
-  })
-})
 </script>
 
 <template>
