@@ -66,10 +66,10 @@ export default class FetchRequest {
         const responseType = fetchResponse.headers.get('content-type')
         
         // 获取响应头
-        const headers: Record<string, any> = {}
+        const responseHeaders: Record<string, any> = {}
         if (fetchResponse.headers) {
           for (const header of fetchResponse.headers.entries()) {
-            headers[header[0]] = header[1]
+            responseHeaders[header[0]] = header[1]
           }
         }
 
@@ -90,7 +90,7 @@ export default class FetchRequest {
           
           return resolve({
             data: responseJson.data as T,
-            headers: headers
+            headers: responseHeaders
           })
         }
         if (responseType === 'application/octet-stream') {
@@ -98,7 +98,7 @@ export default class FetchRequest {
           const responseBlob = await fetchResponse.clone().blob()
           return resolve({
             data: responseBlob as T,
-            headers
+            headers: responseHeaders
           })
         }
       } catch (e) {
