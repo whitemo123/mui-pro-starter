@@ -97,7 +97,7 @@ export default class FetchRequest {
           // 二进制格式数据
           const responseBlob = await fetchResponse.clone().blob()
           return resolve({
-            data: responseBlob as any,
+            data: responseBlob as T,
             headers
           })
         }
