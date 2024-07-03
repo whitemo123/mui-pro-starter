@@ -65,6 +65,14 @@ export default class FetchRequest {
         // 响应数据状态
         const responseType = fetchResponse.headers.get('content-type')
         
+        // 获取响应头
+        const headers: Record<string, any> = {}
+        if (fetchResponse.headers) {
+          for (const header of fetchResponse.headers.entries()) {
+            headers[header[0]] = header[1]
+          }
+        }
+
         if (responseType === 'application/json') {
           // json格式数据
           const responseJson = await fetchResponse.clone().json()
@@ -79,14 +87,6 @@ export default class FetchRequest {
             reject(responseJson)
             return;
           }
-
-          // 获取响应头
-          const headers: Record<string, any> = {}
-          if (fetchResponse.headers) {
-            for (const header of fetchResponse.headers.entries()) {
-              headers[header[0]] = header[1]
-            }
-          }
           
           return resolve({
             data: responseJson.data as T,
@@ -96,7 +96,10 @@ export default class FetchRequest {
         if (responseType === 'application/octet-stream') {
           // 二进制格式数据
           const responseBlob = await fetchResponse.clone().blob()
-          return resolve(responseBlob as any)
+          return resolve({
+            data: responseBlob as any,
+            headers
+          })
         }
       } catch (e) {
         ElMessage.error('网络连接失败，请稍后重试')
