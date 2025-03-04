@@ -73,7 +73,7 @@ export default class FetchRequest {
           }
         }
 
-        if (responseType === 'application/json') {
+        if (responseType === 'application/json' || responseType === 'application/json; charset=utf-8') {
           // json格式数据
           const responseJson = await fetchResponse.clone().json()
           if (!responseJson || !config.codeWhiteList.includes(responseJson.code)) {

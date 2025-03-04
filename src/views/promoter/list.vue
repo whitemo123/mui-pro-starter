@@ -1,6 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import type { ICrudOption } from 'm-element-plus'
+import type { ICrudOption } from 'm-eleplus-crud'
+
+defineOptions({
+  name: "promoterList"
+})
 
 const modelForm: any = ref<any>({})
 
@@ -35,20 +39,20 @@ const option = ref<ICrudOption>({
         trigger: "blur"
       }]
     },
-    {
-      label: "通知类型",
-      type: "select",
-      dicUrl: '/admin/promoter/getPromoterList',
-      dicFormatter: (res: any) => ({list: res.data, label: 'promoterName', value: 'promoterId'}),
-      slot: true,
-      prop: "category",
-      search: true,
-      rules: [{
-        required: true,
-        message: "请输入通知类型",
-        trigger: "blur"
-      }]
-    },
+    // {
+    //   label: "通知类型",
+    //   type: "select",
+    //   dicUrl: '/admin/promoter/getPromoterList',
+    //   dicFormatter: (res: any) => ({list: res.data, label: 'promoterName', value: 'promoterId'}),
+    //   slot: true,
+    //   prop: "category",
+    //   search: true,
+    //   rules: [{
+    //     required: true,
+    //     message: "请输入通知类型",
+    //     trigger: "blur"
+    //   }]
+    // },
     {
       label: "通知日期",
       prop: "releaseTime",

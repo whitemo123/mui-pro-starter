@@ -9,8 +9,8 @@ const userStore = useUserStore()
 const menuStore = useMenuStore()
 
 const firstName = computed(() => {
-  if (userStore.userInfo.realName) {
-    return String(userStore.userInfo.realName)[0]
+  if (userStore.userInfo.name) {
+    return String(userStore.userInfo.name)[0]
   }
   return '无'
 })
@@ -55,7 +55,7 @@ const logout = () => {
       <div class="avatar-text rounded-full flex items-center justify-center select-none">{{ firstName }}</div>
       <el-dropdown>
         <span class="flex justify-center items-center">
-          {{ userStore.userInfo?.realName}}
+          {{ userStore.userInfo?.name}}
           <el-icon><ArrowDown /></el-icon>
         </span>
         <template #dropdown>

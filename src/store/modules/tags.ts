@@ -43,7 +43,7 @@ export const useTagsStore = defineStore('tags', () => {
 
   // 需要缓存的标签
   const tagsKeep = computed(() => {
-    return tagList.value.filter(ele => ele.meta[config.menu.keepAlive]).map(ele => ele.label)
+    return tagList.value.filter(ele => ele.meta[config.menu.keepAlive] === 1 || ele.meta[config.menu.keepAlive] === true).map(ele => ele.label)
   })
 
   /**

@@ -14,7 +14,7 @@ const modules = import.meta.glob(['@/views/**/*.vue'])
  * @returns 
  */
 const isFirstlevelFolder = (row: any) => {
-  if (row.menuType === 'M' && row.pid == 0) {
+  if (row.type === 1 && !row.parentId) {
     return true
   }
   return false
@@ -25,7 +25,7 @@ const isFirstlevelFolder = (row: any) => {
  * @param row 数据
  */
 const isMultilevelFolder = (row: any) => {
-  if (row.pid != 0 && row.menuType === 'M') {
+  if (row.parentId != "" && row.type === 1) {
     return true
   }
   return false
@@ -51,7 +51,18 @@ export const formatRoutes = (menus: any = []) => {
       name = menu[menuConfig.name],
       icon = menu[menuConfig.icon] || menu[menuConfig.meta][menuConfig.icon],
       children = menu[menuConfig.children],
-      meta = menu[menuConfig.meta];
+      meta = menu[menuConfig.meta] || {};
+
+    if (menu[menuConfig.meta] && menu[menuConfig.meta][menuConfig.title]) {
+      meta['title'] = menu[menuConfig.meta][menuConfig.title]
+    } else {
+      meta['title'] = menu[menuConfig.title]
+    }
+    if (menu[menuConfig.meta] && menu[menuConfig.meta][menuConfig.keepAlive]) {
+      meta[config.menu.keepAlive] = menu[menuConfig.meta][menuConfig.keepAlive]
+    } else {
+      meta[config.menu.keepAlive] = menu[menuConfig.keepAlive]
+    }
 
     const isChild = !!(children && children.length);
 
