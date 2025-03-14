@@ -17,7 +17,7 @@ defineProps<IProps>()
       :index="item[config.menu.path]"
     >
       <template #title>
-        <i style="margin-right: 10px;" class="iconfont icon-vuesax-linear-home-2"></i>
+        <i style="margin-right: 10px;" :class="'iconfont ' + item[config.menu.meta]['icon']"></i>
         <span>{{ item[config.menu.meta]['title'] }}</span>
       </template>
       <MenuItem :menu="item[config.menu.children]" />
@@ -26,7 +26,7 @@ defineProps<IProps>()
       v-else
       :index="item[config.menu.path]"
     >
-      <i style="margin-right: 10px;" class="iconfont icon-vuesax-linear-home-2"></i>
+      <i style="margin-right: 10px;" :class="'iconfont ' + item[config.menu.meta]['icon']"></i>
       <template #title>
         <span>{{ item[config.menu.meta]['title'] }}</span>
       </template>

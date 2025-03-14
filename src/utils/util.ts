@@ -26,3 +26,22 @@ export const diff = (obj1: any, obj2: any): boolean => {
   }
   return true;
 }
+
+/**
+ * @description 深拷贝
+ * @param obj
+ * @returns
+ */
+export const deepClone = (obj: any): any => {
+  if (obj === null) return null;
+  if (obj instanceof Date) return new Date(obj);
+  if (obj instanceof RegExp) return new RegExp(obj);
+  if (typeof obj !== 'object') return obj;
+  let newObj = new obj.constructor();
+  for (let key in obj) {
+    if (obj.hasOwnProperty(key)) {
+      newObj[key] = deepClone(obj[key]);
+    }
+  }
+  return newObj;
+}

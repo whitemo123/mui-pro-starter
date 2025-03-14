@@ -52,7 +52,8 @@ export default ({ mode }) => {
         //   ws: true,
         //   changeOrigin: true
         // }
-      }
+      },
+      allowedHosts: ["example.whitemo.xyz"]
     }
   })
 }

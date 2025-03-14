@@ -26,7 +26,9 @@ const toggle = () => {
  * @description 退出登录
  */
 const logout = () => {
-  ElMessageBox.confirm('退出系统, 是否继续?', '', {}).then(() => {
+  ElMessageBox.confirm('退出系统, 是否继续?', '', {
+    type: 'warning'
+  }).then(() => {
     userStore.logOut().then(() => {
       router.push({
         path: '/login'

@@ -17,8 +17,8 @@ const { loading, setLoading } = useLoading(false)
 
 // 登录表单数据
 const loginForm = ref<ILoginData>({
-  account: 'admin',
-  password: '123456',
+  account: '',
+  password: '',
   captcha: '',
   captchaId: ''
 })
@@ -73,23 +73,23 @@ getCaptcha()
       >
         <el-form-item
           prop="account"
-          :rules="[{ required: true, message: '请输入账号!' }]"
+          :rules="[{ required: true, message: '请输入账号!', trigger: 'blur' }]"
         >
           <el-input placeholder="账号" v-model="loginForm.account" />
         </el-form-item>
         <el-form-item
-          prop="pwd"
-          :rules="[{ required: true, message: '请输入密码!' }]"
+          prop="password"
+          :rules="[{ required: true, message: '请输入密码!', trigger: 'blur' }]"
         >
           <el-input type="password" placeholder="密码" v-model="loginForm.password" @keydown.enter="login" />
         </el-form-item>
         <el-form-item
           prop="captcha"
-          :rules="[{ required: true, message: '请输入验证码!' }]"
+          :rules="[{ required: true, message: '请输入验证码!', trigger: 'blur' }]"
         >
           <div class="w-full flex justify-center items-center">
             <div class="flex-1 flex justify-center items-center">
-              <el-input type="password" placeholder="验证码" v-model="loginForm.captcha" @keydown.enter="login" />
+              <el-input placeholder="验证码" v-model="loginForm.captcha" @keydown.enter="login" />
             </div>
             <div class="flex-1 flex justify-end items-center">
               <img @click="getCaptcha" style="cursor: pointer; height: 40px;" :src="captchaBase64" alt="">

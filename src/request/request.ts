@@ -79,9 +79,8 @@ export default class FetchRequest {
           if (!responseJson || !config.codeWhiteList.includes(responseJson.code)) {
             if (responseJson && responseJson.code == 401) {
               const userStore = useUserStore()
-              userStore.logOut().then(() => {
-                router.replace({path: '/login'})
-              })
+              userStore.beforeLogout()
+              router.replace({path: '/login'})
             }
             ElMessage.error(responseJson.message || '网络连接失败，请稍后重试')
             reject(responseJson)
@@ -117,7 +116,13 @@ export default class FetchRequest {
    * @returns Promise对象
    */
   get<T = any>(url: string, data?: Record<string, any>): Promise<IFetchResponse<T>> {
-    const body = data ? '?' + new URLSearchParams(data).toString() : ''
+    const params = new URLSearchParams();
+    for (const key in data) {
+      if (data[key] !== undefined && data[key] !== null && data[key] !== '') {
+        params.append(key, data[key]);
+      }
+    }
+    const body = params.toString() ? '?' + params.toString() : ''
 
     return this.request(url + body, {
       method: 'GET'

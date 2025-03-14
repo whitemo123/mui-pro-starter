@@ -16,11 +16,16 @@ const menuStore = useMenuStore()
 
 <style lang="scss" scoped>
 .page {
+  height: 100%;
+  overflow-y: auto;
   padding: 0 10px;
   box-sizing: border-box;
 
   .page-container {
     width: 100%;
+    // max-height: calc(100% - 40px);
+    // overflow-y: auto;
+    // overflow-x: hidden;
     background: #fff;
     padding: 20px;
     box-sizing: border-box;

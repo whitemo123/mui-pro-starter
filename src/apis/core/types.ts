@@ -23,3 +23,17 @@ export interface IUserInfo {
   // 用户id
   id: string;
 }
+
+export interface IPage {
+  // 页码
+  page: number;
+  // 页码大小
+  limit: number;
+}
+
+export interface IPageRes<T> {
+    // 总数
+    total: number;
+    // 数据
+    list: T[];
+}

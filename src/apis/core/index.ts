@@ -25,3 +25,9 @@ export const getUserInfoApi = () => api.get<IUserInfo>('/admin/auth/userInfo')
  * @returns
  */
 export const getMenuApi = () => api.get('/admin/auth/menuTree')
+
+/**
+ * 退出登录
+ * @returns 
+ */
+export const logoutApi = () => api.postJ('/admin/auth/logout')

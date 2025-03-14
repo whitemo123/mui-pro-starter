@@ -57,6 +57,7 @@ const menuStore = useMenuStore()
 
     .mui-container {
       width: 100%;
+      height: calc(100vh - 104px);
       padding-top: 10px;
       box-sizing: border-box;
     }
