@@ -19,3 +19,10 @@ export const getDatabaseTableColumnListApi = (tableName: string) => api.get<IDat
  * @returns 
  */
 export const createFrontCodeApi = (data: any) => api.postJ("/admin/tool/createFrontBasicCode", data)
+
+/**
+ * 生成后端代码
+ * @param data 模板数据
+ * @returns 
+ */
+export const createServerCodeApi = (data: any) => api.postJ('/admin/tool/createServerBasicCode', data)

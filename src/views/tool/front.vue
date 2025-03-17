@@ -247,7 +247,7 @@ getDatabaseTableListApi().then(e => {
                 </el-table-column>
             </el-table>
             <el-row style="margin-top: 10px;" justify="end">
-                <el-button @click="createCode" :disabled="!moduleName || !tableColumns.length" type="primary">生成代码</el-button>
+                <el-button @click="createCode" :disabled="!projectPath || !moduleName || !tableColumns.length" type="primary">生成代码</el-button>
             </el-row>
         </el-card>
     </page>
