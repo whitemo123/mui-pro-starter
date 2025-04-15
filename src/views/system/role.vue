@@ -8,6 +8,10 @@ import { roleMenuTreeApi } from '@/apis/system/menu'
 import {ISysMenu} from "@/apis/system/menu/types.ts";
 import {ElMessage, ElTree} from 'element-plus'
 
+defineOptions({
+  name: "systemRole"
+})
+
 // crud ref
 const crudRef = ref<CrudInstance>()
 // 菜单树ref

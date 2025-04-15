@@ -30,8 +30,8 @@ const homeTag: Tag = {
   // 标题的参数
   query: {},
   // 额外参数
-  meta: {
-    title: '首页'
+  [config.menu.meta]: {
+    [config.menu.title]: '首页'
   }
 }
 
@@ -43,7 +43,8 @@ export const useTagsStore = defineStore('tags', () => {
 
   // 需要缓存的标签
   const tagsKeep = computed(() => {
-    return tagList.value.filter(ele => ele.meta[config.menu.keepAlive] === 1 || ele.meta[config.menu.keepAlive] === true).map(ele => ele.label)
+    // @ts-ignore
+    return tagList.value.filter(ele => ele[config.menu.meta][config.menu.keepAlive] === true).map(ele => ele.label)
   })
 
   /**

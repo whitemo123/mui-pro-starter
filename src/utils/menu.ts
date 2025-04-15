@@ -46,33 +46,23 @@ export const formatRoutes = (menus: any = []) => {
   for (let i = 0; i < menus.length; i++) {
     const menu = menus[i]
 
+    // 路由地址
     const path = menu[menuConfig.path],
+      // 组件路径
       component = menu[menuConfig.component],
+      // 组件名称
       name = menu[menuConfig.name],
-      icon = menu[menuConfig.icon] || menu[menuConfig.meta][menuConfig.icon],
+      // 子路由
       children = menu[menuConfig.children],
+      // 配置信息
       meta = menu[menuConfig.meta] || {};
-
-    if (menu[menuConfig.meta] && menu[menuConfig.meta][menuConfig.title]) {
-      meta['title'] = menu[menuConfig.meta][menuConfig.title]
-    } else {
-      meta['title'] = menu[menuConfig.title]
-    }
-    if (menu[menuConfig.meta] && menu[menuConfig.meta][menuConfig.keepAlive]) {
-      meta[config.menu.keepAlive] = menu[menuConfig.meta][menuConfig.keepAlive]
-    } else {
-      meta[config.menu.keepAlive] = menu[menuConfig.keepAlive]
-    }
 
     const isChild = !!(children && children.length);
 
     const menuObj: RouteRecordRaw = {
       path,
       name,
-      meta: {
-        ...meta,
-        icon
-      },
+      meta,
       component: (() => {
         // 一级目录
         if (isFirstlevelFolder(menu)) {

@@ -6,6 +6,8 @@ export interface ILoginData {
   account: string;
   // 密码
   password: string;
+  // 租户编号
+  tenant: string;
   // 验证码
   captcha: string;
   // 验证码ID

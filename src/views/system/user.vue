@@ -3,7 +3,8 @@ import { ref } from 'vue'
 
 import {
   sysUserCreateApi, sysUserDetailApi, sysUserModifyApi,
-  sysUserPageListApi
+  sysUserPageListApi,
+  sysUserResetPwdApi
 } from '@/apis/system/user'
 
 import type {
@@ -187,6 +188,16 @@ const rowEdit = (form: ISysUser, done: () => void, loading: () => void) => {
   })
 }
 
+// 重置密码
+const resetPwd = (row: ISysUser) => {
+  sysUserResetPwdApi(row.id).then(e => {
+    if (e && e.data) {
+      ElMessage.success("操作成功!")
+      getList()
+    }
+  })
+}
+
 getList()
 </script>
 
@@ -214,6 +225,15 @@ getList()
             @click="openEdit(row, $index)"
         >
           编辑
+        </el-link>
+        <el-link
+            class="m-control-btns"
+            type="primary"
+            :underline="false"
+            icon="Refresh"
+            @click="resetPwd(row)"
+        >
+          重置密码
         </el-link>
       </template>
     </m-crud>

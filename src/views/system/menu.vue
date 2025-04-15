@@ -12,6 +12,11 @@ import { ElMessage, FormInstance } from "element-plus";
 import icons from '@/constants/icon';
 import {ISysMenu} from "@/apis/system/menu/types.ts";
 
+
+defineOptions({
+  name: "systemMenu"
+})
+
 // crud ref
 const crudRef = ref<CrudInstance>()
 // 查询条件

@@ -19,6 +19,7 @@ const { loading, setLoading } = useLoading(false)
 const loginForm = ref<ILoginData>({
   account: '',
   password: '',
+  tenant: '88888888',
   captcha: '',
   captchaId: ''
 })

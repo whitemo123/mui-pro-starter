@@ -2,6 +2,7 @@ import { useMenuStore } from "@/store";
 import { getToken } from "@/utils/auth";
 import { useNProgress } from '@/hooks/useNProgress'
 import type { Router } from "vue-router";
+import config from "@/config";
 
 export default function permissionGuard(router: Router) {
   router.beforeEach(async (to, _, next) => {
@@ -22,7 +23,8 @@ export default function permissionGuard(router: Router) {
   router.afterEach((to) => {
     // nprogress hook
     const { done } = useNProgress()
-    document.title = to.meta.title as string || ''
+    // @ts-ignore
+    document.title = to[config.menu.meta][config.menu.title] as string || ''
     done()
   })
   

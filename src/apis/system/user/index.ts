@@ -22,3 +22,10 @@ export const sysUserModifyApi = (data: Partial<ISysUser>) => api.postJ("/admin/u
  * @param id
  */
 export const sysUserDetailApi = (id: string) => api.get<ISysUser>("/admin/user/detail/" + id)
+
+/**
+ * 重置密码
+ * @param id 用户id
+ * @returns
+ */
+export const sysUserResetPwdApi = (id: string) => api.get("/admin/user/reset/" + id)

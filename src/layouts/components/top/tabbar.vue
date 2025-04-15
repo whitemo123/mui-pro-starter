@@ -131,7 +131,7 @@ listenerRouteChange((route) => {
           @click="tagClick(tag)"
           @close="tagClose(tag)"
         >
-          {{ tag.meta?.title }}
+          {{ tag[config.menu.meta][config.menu.title] }}
         </el-tag>
         <template #dropdown>
           <el-dropdown-item @click="closeOther(tag)">关闭其它</el-dropdown-item>
