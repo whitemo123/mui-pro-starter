@@ -1,14 +1,37 @@
 <script setup lang="ts">
-import { useMenuStore } from '@/store'
+import { useMenuStore, useUserStore } from '@/store'
 // 侧边栏
 import SideBar from './components/siderBar/index.vue'
 // 顶部栏
 import Top from './components/top/index.vue'
-
 // 页面路由
 import PageLayout from './page-layout.vue'
 
+import waterMark from '@/utils/water-mark'
+import { onBeforeUnmount, onMounted, watch } from 'vue'
+
 const menuStore = useMenuStore()
+const userStore = useUserStore()
+
+let userInfoWatch: any = null
+
+onMounted(() => {
+  userInfoWatch = watch(() => userStore.userInfo, (newVal) => {
+    if (newVal && newVal.name) {
+      waterMark.remove('M-GLOBAL-WATERMARK')
+      waterMark.add('M-GLOBAL-WATERMARK', newVal.name)
+    }
+  }, {
+    immediate: true,
+    deep: true
+  })
+})
+
+onBeforeUnmount(() => {
+  if (userInfoWatch) {
+    userInfoWatch()
+  }
+})
 </script>
 
 <template>
